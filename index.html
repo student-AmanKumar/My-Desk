@@ -1,0 +1,4149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#f4ecdf">
+
+<title>Aman — Personal Hub</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root{
+    --cream:#f4ecdf;
+    --cream-light:#faf6ed;
+    --cream-deep:#e8ddca;
+
+    --green:#244638;
+    --green-light:#486455;
+    --green-fade:rgba(36,70,56,.10);
+
+    --gold:#aa8d58;
+    --gold-fade:rgba(170,141,88,.15);
+
+    --text:#294036;
+    --muted:#7b8179;
+    --line:rgba(36,70,56,.14);
+
+    --white:#fffaf2;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    height:100%;
+}
+
+body{
+    background:var(--cream);
+    color:var(--text);
+    font-family:"DM Sans",sans-serif;
+
+    overflow:hidden;
+
+    user-select:none;
+    -webkit-user-select:none;
+
+    -webkit-tap-highlight-color:transparent;
+}
+
+button,
+input{
+    font:inherit;
+}
+
+button{
+    border:0;
+    outline:0;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+img{
+    display:block;
+    user-select:none;
+    -webkit-user-drag:none;
+}
+
+
+/* =========================================================
+   COMMON
+========================================================= */
+
+.screen{
+    position:fixed;
+    inset:0;
+
+    width:100%;
+    height:100%;
+}
+
+
+/* =========================================================
+   STARTUP
+========================================================= */
+
+#startup{
+    z-index:9999;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:var(--cream);
+
+    transition:
+        opacity .5s ease,
+        visibility .5s ease;
+}
+
+.loader-center{
+    width:220px;
+    text-align:center;
+}
+
+.loader-circle{
+    width:116px;
+    height:116px;
+
+    margin:auto;
+
+    position:relative;
+
+    display:grid;
+    place-items:center;
+}
+
+.loader-logo{
+    width:70px;
+    height:70px;
+
+    object-fit:contain;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    animation:logoFloat 2.4s ease-in-out infinite;
+}
+
+.loader-orbit{
+    position:absolute;
+
+    width:98px;
+    height:98px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    border:1px solid var(--line);
+    border-top-color:var(--gold);
+
+    border-radius:50%;
+
+    animation:spin 2.3s linear infinite;
+}
+
+.loader-orbit-two{
+    position:absolute;
+
+    width:116px;
+    height:116px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    border:1px dashed rgba(36,70,56,.08);
+
+    border-radius:50%;
+
+    animation:spinReverse 8s linear infinite;
+}
+
+.loader-caption{
+    margin-top:25px;
+
+    color:var(--green);
+
+    font-size:8px;
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+}
+
+.loader-line{
+    width:100%;
+    height:1px;
+
+    margin-top:15px;
+
+    background:var(--line);
+}
+
+.loader-fill{
+    width:0;
+    height:100%;
+
+    background:var(--gold);
+
+    transition:width .1s linear;
+}
+
+.loader-percent{
+    margin-top:8px;
+
+    color:var(--muted);
+
+    font-size:7px;
+    letter-spacing:2px;
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+#login{
+    z-index:9000;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    background:var(--cream);
+}
+
+.login-area{
+    width:min(390px,86vw);
+
+    text-align:center;
+
+    animation:loginIn .8s ease both;
+}
+
+.login-logo-wrap{
+    width:82px;
+    height:82px;
+
+    margin:0 auto 25px;
+
+    border:1px solid var(--line);
+
+    border-radius:50%;
+
+    display:grid;
+    place-items:center;
+
+    position:relative;
+}
+
+.login-logo-wrap::before{
+    content:"";
+
+    position:absolute;
+
+    inset:-7px;
+
+    border:1px solid rgba(170,141,88,.18);
+
+    border-radius:50%;
+}
+
+.login-logo{
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    object-fit:contain;
+}
+
+.login-label{
+    font-size:7px;
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    color:var(--gold);
+}
+
+.login-title{
+    font-family:"Playfair Display",serif;
+
+    color:var(--green);
+
+    font-size:43px;
+    font-weight:500;
+
+    margin-top:6px;
+}
+
+.login-sub{
+    color:var(--muted);
+
+    font-size:9px;
+    line-height:1.7;
+
+    margin:8px auto 27px;
+
+    max-width:280px;
+}
+
+.login-input{
+    position:relative;
+
+    width:100%;
+
+    margin-bottom:12px;
+}
+
+.login-input i{
+    position:absolute;
+
+    left:3px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    font-size:9px;
+
+    color:var(--gold);
+}
+
+.login-input input{
+    width:100%;
+    height:42px;
+
+    background:transparent;
+
+    border:0;
+    border-bottom:1px solid var(--line);
+
+    outline:none;
+
+    color:var(--green);
+
+    font-size:11px;
+
+    padding:0 5px 0 25px;
+
+    transition:.3s;
+}
+
+.login-input input:focus{
+    border-color:var(--green);
+}
+
+.login-input input::placeholder{
+    color:#aaa69d;
+}
+
+.login-submit{
+    width:100%;
+    height:43px;
+
+    margin-top:6px;
+
+    background:var(--green);
+
+    color:var(--cream-light);
+
+    border-radius:30px;
+
+    cursor:pointer;
+
+    font-size:8px;
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+
+    transition:
+        transform .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+}
+
+.login-submit:hover{
+    background:var(--green-light);
+
+    transform:translateY(-2px);
+
+    box-shadow:0 12px 25px rgba(36,70,56,.12);
+}
+
+.login-submit:active{
+    transform:scale(.98);
+}
+
+.login-error{
+    height:17px;
+
+    padding-top:7px;
+
+    color:#80645b;
+
+    font-size:8px;
+}
+
+.login-bottom{
+    margin-top:22px;
+
+    color:#aaa79e;
+
+    font-size:6px;
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+}
+
+
+/* =========================================================
+   SYNC
+========================================================= */
+
+#sync{
+    z-index:8500;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    background:var(--green);
+
+    color:var(--cream);
+
+    transition:opacity .5s ease;
+}
+
+.sync-center{
+    width:min(380px,82vw);
+
+    text-align:center;
+}
+
+.sync-logo{
+    width:54px;
+    height:54px;
+
+    border-radius:50%;
+
+    object-fit:contain;
+
+    margin:0 auto 27px;
+
+    animation:logoFloat 2s ease-in-out infinite;
+}
+
+.sync-small{
+    font-size:7px;
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    color:rgba(244,236,223,.45);
+}
+
+.sync-title{
+    font-family:"Playfair Display",serif;
+
+    font-size:46px;
+
+    font-weight:500;
+
+    margin-top:5px;
+}
+
+.sync-message{
+    color:rgba(244,236,223,.48);
+
+    font-size:9px;
+
+    margin-top:5px;
+}
+
+.sync-line{
+    height:1px;
+
+    background:rgba(244,236,223,.15);
+
+    margin-top:24px;
+}
+
+.sync-fill{
+    width:0;
+    height:100%;
+
+    background:var(--gold);
+}
+
+.sync-percent{
+    margin-top:8px;
+
+    text-align:right;
+
+    font-size:7px;
+    letter-spacing:2px;
+
+    color:rgba(244,236,223,.35);
+}
+
+
+/* =========================================================
+   MAIN APP
+========================================================= */
+
+#app{
+    z-index:100;
+
+    display:none;
+
+    background:var(--cream);
+}
+
+.background-circle{
+    position:absolute;
+
+    pointer-events:none;
+
+    border-radius:50%;
+}
+
+.bg-one{
+    width:430px;
+    height:430px;
+
+    left:-260px;
+    top:-230px;
+
+    border:1px solid rgba(36,70,56,.06);
+}
+
+.bg-two{
+    width:700px;
+    height:700px;
+
+    right:-460px;
+    bottom:-420px;
+
+    border:1px solid rgba(170,141,88,.08);
+}
+
+.bg-three{
+    width:300px;
+    height:300px;
+
+    right:8%;
+    top:15%;
+
+    border:1px dashed rgba(36,70,56,.06);
+
+    animation:slowRotate 35s linear infinite;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.header{
+    position:absolute;
+
+    top:0;
+    left:0;
+    right:0;
+
+    height:65px;
+
+    padding:0 clamp(18px,4vw,55px);
+
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    z-index:50;
+}
+
+.identity{
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+}
+
+.identity-logo{
+    width:30px;
+    height:30px;
+
+    border-radius:50%;
+
+    object-fit:contain;
+}
+
+.identity-text{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:2px;
+}
+
+.identity-name{
+    font-size:7px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    color:var(--green);
+
+    text-transform:uppercase;
+}
+
+.identity-state{
+    font-size:6px;
+
+    color:var(--muted);
+}
+
+.header-right{
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+}
+
+.header-date{
+    font-size:6px;
+
+    letter-spacing:1.5px;
+
+    color:var(--muted);
+}
+
+.menu-trigger{
+    width:31px;
+    height:31px;
+
+    border-radius:50%;
+
+    border:1px solid var(--line);
+
+    background:transparent;
+
+    color:var(--green);
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.menu-trigger:hover{
+    background:var(--green);
+
+    color:var(--cream);
+}
+
+.menu-trigger:active{
+    transform:scale(.92);
+}
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+.menu{
+    position:absolute;
+
+    z-index:200;
+
+    right:clamp(18px,4vw,55px);
+    top:55px;
+
+    width:175px;
+
+    padding:12px 8px;
+
+    background:var(--cream-light);
+
+    border:1px solid var(--line);
+
+    border-radius:18px;
+
+    box-shadow:0 20px 50px rgba(36,70,56,.09);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(-7px) scale(.97);
+
+    transition:.25s;
+}
+
+.menu.open{
+    opacity:1;
+
+    visibility:visible;
+
+    transform:none;
+}
+
+.menu-label{
+    padding:5px 10px 9px;
+
+    font-size:6px;
+
+    letter-spacing:2px;
+
+    color:var(--gold);
+
+    text-transform:uppercase;
+}
+
+.menu-item{
+    width:100%;
+    height:34px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:0 10px;
+
+    background:transparent;
+
+    color:var(--green);
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    text-align:left;
+
+    font-size:8px;
+
+    transition:.2s;
+}
+
+.menu-item:hover{
+    background:var(--cream-deep);
+}
+
+.menu-item:active{
+    transform:scale(.98);
+}
+
+.menu-item i{
+    width:12px;
+
+    font-size:8px;
+}
+
+.menu-divider{
+    height:1px;
+
+    background:var(--line);
+
+    margin:7px 5px;
+}
+
+
+/* =========================================================
+   MAIN SCROLL
+========================================================= */
+
+.scroll{
+    position:absolute;
+
+    inset:65px 0 0;
+
+    overflow-y:auto;
+
+    scrollbar-width:none;
+
+    scroll-behavior:smooth;
+}
+
+.scroll::-webkit-scrollbar{
+    display:none;
+}
+
+.content{
+    width:min(980px,91vw);
+
+    min-height:100%;
+
+    margin:auto;
+
+    padding:25px 0 32px;
+}
+
+
+/* =========================================================
+   TOP AREA
+========================================================= */
+
+.top-area{
+    min-height:112px;
+
+    display:grid;
+
+    grid-template-columns:1fr 125px;
+
+    align-items:center;
+
+    gap:25px;
+
+    animation:rise .8s .05s both;
+}
+
+.top-label{
+    font-size:7px;
+
+    letter-spacing:3px;
+
+    text-transform:uppercase;
+
+    color:var(--gold);
+}
+
+.top-title{
+    font-family:"Playfair Display",serif;
+
+    font-size:clamp(34px,5vw,53px);
+
+    line-height:.95;
+
+    font-weight:500;
+
+    color:var(--green);
+
+    margin-top:5px;
+}
+
+.top-title span{
+    color:var(--gold);
+}
+
+.top-copy{
+    max-width:350px;
+
+    margin-top:8px;
+
+    color:var(--muted);
+
+    font-size:8px;
+
+    line-height:1.7;
+}
+
+.date-orbit{
+    width:105px;
+    height:105px;
+
+    border-radius:50%;
+
+    border:1px solid var(--line);
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-direction:column;
+
+    justify-self:end;
+}
+
+.date-orbit::before{
+    content:"";
+
+    position:absolute;
+
+    inset:7px;
+
+    border:1px dashed rgba(170,141,88,.23);
+
+    border-radius:50%;
+
+    animation:spinReverse 12s linear infinite;
+}
+
+.date-day{
+    font-family:"Playfair Display",serif;
+
+    color:var(--green);
+
+    font-size:24px;
+
+    line-height:1;
+}
+
+.date-month{
+    margin-top:4px;
+
+    color:var(--muted);
+
+    font-size:6px;
+
+    letter-spacing:1.5px;
+
+    text-transform:uppercase;
+}
+
+
+/* =========================================================
+   SYSTEM HEADING
+========================================================= */
+
+.system-heading{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin:20px 0 15px;
+
+    animation:rise .8s .15s both;
+}
+
+.system-heading::after{
+    content:"";
+
+    flex:1;
+
+    height:1px;
+
+    background:var(--line);
+}
+
+.system-heading span{
+    font-size:7px;
+
+    letter-spacing:2.5px;
+
+    text-transform:uppercase;
+
+    color:var(--green);
+}
+
+
+/* =========================================================
+   SYSTEMS
+========================================================= */
+
+.systems{
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    align-items:start;
+
+    justify-items:center;
+
+    gap:20px;
+
+    padding:8px 0 12px;
+}
+
+.system-link{
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+    cursor:pointer;
+
+    transition:transform .45s ease;
+}
+
+
+/* =========================================================
+   SYSTEM CIRCLE
+========================================================= */
+
+.system-circle{
+    width:145px;
+    height:145px;
+
+    border-radius:50%;
+
+    border:1px solid var(--line);
+
+    position:relative;
+
+    display:grid;
+
+    place-items:center;
+
+    /*
+       IMPORTANT:
+       Image ko circle ke bahar jane se rokta hai.
+    */
+    overflow:hidden;
+
+    background:var(--cream);
+
+    transition:
+        transform .5s cubic-bezier(.2,.8,.2,1),
+        border-color .35s,
+        box-shadow .35s;
+}
+
+
+/*
+   INNER DECORATIVE RING
+   Image ke upar rahega.
+*/
+
+.system-circle::before{
+    content:"";
+
+    position:absolute;
+
+    inset:8px;
+
+    border:1px dashed rgba(36,70,56,.10);
+
+    border-radius:50%;
+
+    transition:.5s;
+
+    z-index:3;
+
+    pointer-events:none;
+}
+
+
+/*
+   TOP GOLD DOT
+   Image ke upar rahega.
+*/
+
+.system-circle::after{
+    content:"";
+
+    position:absolute;
+
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+
+    background:var(--gold);
+
+    top:5px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    box-shadow:
+        0 0 0 5px rgba(170,141,88,.08);
+
+    transition:.5s;
+
+    z-index:5;
+
+    pointer-events:none;
+}
+
+
+/*
+   ========================================================
+   MAIN FIX
+   ========================================================
+
+   Ab image:
+   - poore circle ko fill karegi
+   - landscape image circle ke andar crop hogi
+   - rectangle nahi dikhega
+   - image bahar nahi jayegi
+   - har device par responsive rahegi
+*/
+
+.system-logo{
+    position:absolute;
+
+    inset:0;
+
+    width:100% !important;
+    height:100% !important;
+
+    max-width:none !important;
+    max-height:none !important;
+
+    min-width:0 !important;
+    min-height:0 !important;
+
+    display:block;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    object-position:center center;
+
+    z-index:1;
+
+    margin:0;
+
+    padding:0;
+
+    transition:
+        transform .45s ease,
+        filter .35s ease;
+}
+
+
+/*
+   Hover par image halka zoom hogi,
+   lekin circle se bahar nahi jayegi
+   because parent has overflow:hidden.
+*/
+
+.system-link:hover .system-logo{
+    transform:scale(1.035);
+}
+
+
+/* =========================================================
+   SYSTEM HOVER
+========================================================= */
+
+.system-link:hover .system-circle{
+    transform:
+        translateY(-7px)
+        rotate(2deg);
+
+    border-color:rgba(36,70,56,.28);
+
+    box-shadow:
+        0 18px 35px rgba(36,70,56,.08);
+}
+
+.system-link:hover .system-circle::before{
+    transform:
+        rotate(-30deg)
+        scale(.93);
+
+    border-color:rgba(170,141,88,.25);
+}
+
+.system-link:hover .system-circle::after{
+    transform:
+        translateX(-50%)
+        scale(1.3);
+}
+
+
+/* =========================================================
+   SYSTEM NUMBER
+========================================================= */
+
+.system-number{
+    position:absolute;
+
+    bottom:22px;
+    right:25px;
+
+    width:21px;
+    height:21px;
+
+    border-radius:50%;
+
+    display:grid;
+    place-items:center;
+
+    background:var(--green);
+
+    color:var(--cream);
+
+    font-size:6px;
+
+    z-index:10;
+
+    box-shadow:
+        0 3px 10px rgba(36,70,56,.15);
+}
+
+
+/* =========================================================
+   SYSTEM TEXT
+========================================================= */
+
+.system-name{
+    margin-top:12px;
+
+    font-family:"Playfair Display",serif;
+
+    color:var(--green);
+
+    font-size:20px;
+
+    font-weight:500;
+
+    transition:.3s;
+}
+
+.system-link:hover .system-name{
+    color:var(--gold);
+}
+
+.system-type{
+    margin-top:3px;
+
+    color:var(--muted);
+
+    font-size:6px;
+
+    letter-spacing:1.5px;
+
+    text-transform:uppercase;
+}
+
+.system-open{
+    margin-top:7px;
+
+    color:var(--gold);
+
+    font-size:7px;
+
+    opacity:.7;
+
+    transition:.3s;
+}
+
+.system-link:hover .system-open{
+    opacity:1;
+
+    transform:translateY(-2px);
+}
+
+
+/* =========================================================
+   SMALL STATUS STRIP
+========================================================= */
+
+.status-strip{
+    margin-top:27px;
+
+    padding:14px 0;
+
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:0;
+}
+
+.status-item{
+    min-width:150px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    position:relative;
+
+    padding:0 18px;
+}
+
+.status-item + .status-item::before{
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    width:1px;
+    height:24px;
+
+    background:var(--line);
+}
+
+.status-icon{
+    width:28px;
+    height:28px;
+
+    border:1px solid var(--line);
+
+    border-radius:50%;
+
+    display:grid;
+
+    place-items:center;
+
+    color:var(--green);
+
+    font-size:7px;
+
+    transition:
+        transform .35s ease,
+        background .35s ease,
+        color .35s ease;
+}
+
+.status-item:hover .status-icon{
+    transform:rotate(12deg) scale(1.06);
+
+    background:var(--green);
+
+    color:var(--cream);
+}
+
+.status-copy{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:2px;
+
+    text-align:left;
+}
+
+.status-label{
+    color:var(--gold);
+
+    font-size:5px;
+
+    letter-spacing:1.6px;
+
+    text-transform:uppercase;
+}
+
+.status-value{
+    color:var(--green);
+
+    font-family:"Playfair Display",serif;
+
+    font-size:11px;
+}
+
+.status-sub{
+    color:var(--muted);
+
+    font-size:5px;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+    margin-top:24px;
+
+    padding-top:15px;
+
+    border-top:1px solid var(--line);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+}
+
+.footer-brand{
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+}
+
+.footer-logo{
+    width:31px;
+    height:31px;
+
+    border-radius:50%;
+
+    object-fit:contain;
+
+    border:1px solid rgba(36,70,56,.10);
+
+    padding:2px;
+
+    transition:
+        transform .5s ease,
+        border-color .3s ease;
+}
+
+.footer-brand:hover .footer-logo{
+    transform:rotate(8deg) scale(1.05);
+
+    border-color:rgba(170,141,88,.35);
+}
+
+.footer-copy{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:3px;
+}
+
+.footer-title{
+    color:var(--green);
+
+    font-size:7px;
+
+    font-weight:700;
+
+    letter-spacing:1.7px;
+
+    text-transform:uppercase;
+}
+
+.footer-sub{
+    color:var(--muted);
+
+    font-size:5.5px;
+
+    letter-spacing:.5px;
+}
+
+.footer-right{
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+}
+
+.footer-status{
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    color:var(--green);
+
+    font-size:5.5px;
+
+    letter-spacing:1.4px;
+
+    text-transform:uppercase;
+}
+
+.footer-dot{
+    width:5px;
+    height:5px;
+
+    border-radius:50%;
+
+    background:var(--green);
+
+    box-shadow:
+        0 0 0 4px rgba(36,70,56,.08);
+
+    animation:pulse 2s infinite;
+}
+
+.footer-time{
+    color:var(--muted);
+
+    font-size:5.5px;
+
+    letter-spacing:1px;
+}
+
+
+/* =========================================================
+   REVEAL
+========================================================= */
+
+.reveal{
+    opacity:0;
+
+    transform:
+        translateY(20px)
+        scale(.985);
+
+    transition:
+        opacity .75s ease,
+        transform .75s cubic-bezier(.2,.7,.2,1);
+}
+
+.reveal.visible{
+    opacity:1;
+
+    transform:none;
+}
+
+
+/* =========================================================
+   KEYFRAMES
+========================================================= */
+
+@keyframes spin{
+    to{
+        transform:
+            translate(-50%,-50%)
+            rotate(360deg);
+    }
+}
+
+@keyframes spinReverse{
+    to{
+        transform:
+            translate(-50%,-50%)
+            rotate(-360deg);
+    }
+}
+
+@keyframes logoFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-5px);
+    }
+}
+
+@keyframes loginIn{
+    from{
+        opacity:0;
+
+        transform:
+            translateY(15px)
+            scale(.98);
+    }
+
+    to{
+        opacity:1;
+
+        transform:none;
+    }
+}
+
+@keyframes slowRotate{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes rise{
+    from{
+        opacity:0;
+
+        transform:translateY(12px);
+    }
+
+    to{
+        opacity:1;
+
+        transform:none;
+    }
+}
+
+@keyframes pulse{
+    0%,100%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:.4;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:760px){
+
+    .header{
+        height:60px;
+    }
+
+    .scroll{
+        inset:60px 0 0;
+    }
+
+    .content{
+        width:calc(100% - 28px);
+
+        padding-top:18px;
+        padding-bottom:28px;
+    }
+
+    .top-area{
+        min-height:105px;
+
+        grid-template-columns:1fr 88px;
+
+        gap:10px;
+    }
+
+    .top-title{
+        font-size:36px;
+    }
+
+    .top-copy{
+        font-size:7px;
+
+        max-width:260px;
+    }
+
+    .date-orbit{
+        width:82px;
+        height:82px;
+    }
+
+    .date-day{
+        font-size:20px;
+    }
+
+    .systems{
+        gap:7px;
+    }
+
+    .system-circle{
+        width:118px;
+        height:118px;
+    }
+
+    .system-circle::before{
+        inset:6px;
+    }
+
+    /*
+       NO SMALL SYSTEM LOGO SIZE HERE.
+       It automatically fills the circle.
+    */
+
+    .system-number{
+        width:18px;
+        height:18px;
+
+        right:18px;
+        bottom:18px;
+    }
+
+    .system-name{
+        font-size:17px;
+    }
+
+    .system-type{
+        font-size:5px;
+    }
+
+    .status-item{
+        min-width:125px;
+
+        padding:0 10px;
+    }
+
+    .footer{
+        gap:10px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:500px){
+
+    .header-date{
+        display:none;
+    }
+
+    .identity-logo{
+        width:27px;
+        height:27px;
+    }
+
+    .identity-name{
+        font-size:6px;
+    }
+
+    .top-area{
+        grid-template-columns:1fr 75px;
+    }
+
+    .top-title{
+        font-size:31px;
+    }
+
+    .top-copy{
+        font-size:7px;
+
+        line-height:1.6;
+    }
+
+    .date-orbit{
+        width:70px;
+        height:70px;
+    }
+
+    .date-day{
+        font-size:17px;
+    }
+
+    .date-month{
+        font-size:5px;
+    }
+
+    .systems{
+        grid-template-columns:1fr 1fr;
+
+        column-gap:8px;
+
+        row-gap:25px;
+    }
+
+    .system-circle{
+        width:126px;
+        height:126px;
+    }
+
+    .system-name{
+        font-size:17px;
+    }
+
+    .system-type{
+        font-size:5px;
+    }
+
+    .system-open{
+        font-size:6px;
+    }
+
+
+    /* SMALL STATUS ON MOBILE */
+
+    .status-strip{
+        margin-top:23px;
+
+        padding:13px 0;
+
+        display:grid;
+
+        grid-template-columns:repeat(3,1fr);
+
+        gap:0;
+    }
+
+    .status-item{
+        min-width:0;
+
+        padding:0 5px;
+
+        flex-direction:column;
+
+        gap:5px;
+    }
+
+    .status-item + .status-item::before{
+        height:28px;
+    }
+
+    .status-icon{
+        width:27px;
+        height:27px;
+
+        font-size:7px;
+    }
+
+    .status-copy{
+        align-items:center;
+
+        text-align:center;
+
+        gap:2px;
+    }
+
+    .status-label{
+        font-size:4.5px;
+
+        letter-spacing:1.2px;
+    }
+
+    .status-value{
+        font-size:10px;
+    }
+
+    .status-sub{
+        font-size:4.5px;
+    }
+
+
+    /* MOBILE FOOTER */
+
+    .footer{
+        margin-top:21px;
+
+        padding-top:16px;
+
+        flex-direction:column;
+
+        justify-content:center;
+
+        text-align:center;
+
+        gap:11px;
+    }
+
+    .footer-brand{
+        width:100%;
+
+        flex-direction:column;
+
+        justify-content:center;
+
+        align-items:center;
+
+        gap:6px;
+    }
+
+    .footer-logo{
+        width:39px;
+        height:39px;
+
+        padding:3px;
+    }
+
+    .footer-copy{
+        align-items:center;
+
+        text-align:center;
+    }
+
+    .footer-title{
+        font-size:6.5px;
+
+        letter-spacing:1.6px;
+    }
+
+    .footer-sub{
+        font-size:5px;
+    }
+
+    .footer-right{
+        width:100%;
+
+        justify-content:center;
+
+        gap:14px;
+    }
+
+    .footer-status{
+        font-size:5px;
+    }
+
+    .footer-time{
+        font-size:5px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL
+========================================================= */
+
+@media(max-width:350px){
+
+    .content{
+        width:calc(100% - 22px);
+    }
+
+    .system-circle{
+        width:110px;
+        height:110px;
+    }
+
+    .system-name{
+        font-size:15px;
+    }
+
+    .top-title{
+        font-size:28px;
+    }
+
+    .status-value{
+        font-size:9px;
+    }
+
+    .footer-logo{
+        width:36px;
+        height:36px;
+    }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+
+        scroll-behavior:auto !important;
+
+        transition-duration:.01ms !important;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     STARTUP
+========================================================= -->
+
+<section
+    id="startup"
+    class="screen"
+>
+
+    <div class="loader-center">
+
+        <div class="loader-circle">
+
+            <div class="loader-orbit"></div>
+
+            <div class="loader-orbit-two"></div>
+
+            <img
+                src="images/logo.png"
+                class="loader-logo"
+                alt="Aman"
+            >
+
+        </div>
+
+
+        <div
+            class="loader-caption"
+            id="loaderCaption"
+        >
+            Preparing your space
+        </div>
+
+
+        <div class="loader-line">
+
+            <div
+                class="loader-fill"
+                id="loaderFill"
+            ></div>
+
+        </div>
+
+
+        <div
+            class="loader-percent"
+            id="loaderPercent"
+        >
+            00%
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     LOGIN
+========================================================= -->
+
+<section
+    id="login"
+    class="screen"
+>
+
+    <div class="login-area">
+
+        <div class="login-logo-wrap">
+
+            <img
+                src="images/logo.png"
+                class="login-logo"
+                alt="Aman"
+            >
+
+        </div>
+
+
+        <div class="login-label">
+            Private Access
+        </div>
+
+
+        <h1 class="login-title">
+            Welcome back.
+        </h1>
+
+
+        <p class="login-sub">
+            Your private space for work,
+            planning and personal systems.
+        </p>
+
+
+        <form id="loginForm">
+
+            <div class="login-input">
+
+                <i class="fa-regular fa-user"></i>
+
+                <input
+                    id="username"
+                    type="text"
+                    placeholder="Personal ID"
+                    autocomplete="off"
+                    required
+                >
+
+            </div>
+
+
+            <div class="login-input">
+
+                <i class="fa-solid fa-key"></i>
+
+                <input
+                    id="password"
+                    type="password"
+                    placeholder="Password"
+                    autocomplete="off"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                class="login-submit"
+                type="submit"
+            >
+                Enter Personal Space
+            </button>
+
+
+            <div
+                class="login-error"
+                id="loginError"
+            ></div>
+
+        </form>
+
+
+        <div class="login-bottom">
+            Private · Personal · Aman
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     SYNC
+========================================================= -->
+
+
+<section
+    id="sync"
+    class="screen"
+>
+
+    <div class="sync-center">
+
+        <div
+            style="
+                position:relative !important;
+                width:82px !important;
+                height:82px !important;
+                min-width:82px !important;
+                min-height:82px !important;
+                max-width:82px !important;
+                max-height:82px !important;
+                flex:0 0 82px !important;
+                display:grid !important;
+                place-items:center !important;
+                border-radius:50% !important;
+                box-sizing:border-box !important;
+                animation:syncCirclePulse 2.8s ease-in-out infinite !important;
+            "
+        >
+
+            <img
+                src="images/logo.png"
+                class="sync-logo"
+                alt="Aman"
+                style="
+                    width:82px !important;
+                    height:82px !important;
+                    min-width:82px !important;
+                    min-height:82px !important;
+                    max-width:82px !important;
+                    max-height:82px !important;
+                    flex:0 0 82px !important;
+                    display:block !important;
+                    object-fit:cover !important;
+                    object-position:center !important;
+                    border-radius:50% !important;
+                    box-sizing:border-box !important;
+                    animation:none !important;
+                    transform:none !important;
+                "
+            >
+
+        </div>
+
+
+        <div
+            class="sync-small"
+            id="syncSmall"
+        >
+            Initializing
+        </div>
+
+
+        <div
+            class="sync-title"
+            id="syncTitle"
+        >
+            Connect
+        </div>
+
+
+        <div
+            class="sync-message"
+            id="syncMessage"
+        >
+            Preparing your personal environment
+        </div>
+
+
+        <div class="sync-line">
+
+            <div
+                class="sync-fill"
+                id="syncFill"
+            ></div>
+
+        </div>
+
+
+        <div
+            class="sync-percent"
+            id="syncPercent"
+        >
+            00%
+        </div>
+
+    </div>
+
+</section>
+
+<style>
+@keyframes syncCirclePulse {
+    0%, 100% {
+        box-shadow:
+            0 0 0 2px rgba(180,145,75,.25),
+            0 0 0 5px rgba(180,145,75,.06);
+    }
+
+    50% {
+        box-shadow:
+            0 0 0 2px rgba(180,145,75,.85),
+            0 0 0 7px rgba(180,145,75,.12);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sync-center > div:first-child {
+        animation:none !important;
+    }
+}
+</style>
+
+
+
+<!-- =========================================================
+     MAIN APP
+========================================================= -->
+
+<section
+    id="app"
+    class="screen"
+>
+
+
+    <div class="background-circle bg-one"></div>
+
+    <div class="background-circle bg-two"></div>
+
+    <div class="background-circle bg-three"></div>
+
+
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="header">
+
+
+       <div class="footer-brand">
+
+    <div
+        style="
+            width:42px !important;
+            height:42px !important;
+            min-width:42px !important;
+            min-height:42px !important;
+            max-width:42px !important;
+            max-height:42px !important;
+            flex:0 0 42px !important;
+            position:relative !important;
+            display:grid !important;
+            place-items:center !important;
+            border-radius:50% !important;
+            box-sizing:border-box !important;
+            animation:footerCircleSpin 3s linear infinite !important;
+        "
+    >
+        <img
+            src="images/logo.png"
+            class="footer-logo"
+            alt="Aman"
+            style="
+                width:42px !important;
+                height:42px !important;
+                min-width:42px !important;
+                min-height:42px !important;
+                max-width:42px !important;
+                max-height:42px !important;
+                display:block !important;
+                object-fit:cover !important;
+                object-position:center !important;
+                border-radius:50% !important;
+                box-sizing:border-box !important;
+                animation:none !important;
+                transform:none !important;
+            "
+        >
+    </div>
+
+    <div class="footer-copy">
+
+        <span class="footer-title">
+            Aman Personal Hub
+        </span>
+
+        <span class="footer-sub">
+            A private space for your personal systems
+        </span>
+
+    </div>
+
+</div>
+
+<style>
+@keyframes footerCircleSpin {
+    from {
+        box-shadow:0 -2px 0 rgba(180,145,75,.9),
+                   2px 0 0 rgba(180,145,75,.35),
+                   0 2px 0 transparent,
+                   -2px 0 0 rgba(180,145,75,.35);
+    }
+    50% {
+        box-shadow:0 2px 0 rgba(180,145,75,.9),
+                   -2px 0 0 rgba(180,145,75,.35),
+                   0 -2px 0 transparent,
+                   2px 0 0 rgba(180,145,75,.35);
+    }
+    to {
+        box-shadow:0 -2px 0 rgba(180,145,75,.9),
+                   2px 0 0 rgba(180,145,75,.35),
+                   0 2px 0 transparent,
+                   -2px 0 0 rgba(180,145,75,.35);
+    }
+}
+</style>
+
+
+
+        <div class="header-right">
+
+
+            <div
+                class="header-date"
+                id="headerDate"
+            >
+                ---
+            </div>
+
+
+            <button
+                class="menu-trigger"
+                id="menuTrigger"
+                aria-label="Open menu"
+            >
+                <i class="fa-solid fa-ellipsis"></i>
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         MENU
+    ====================================================== -->
+
+    <div
+        class="menu"
+        id="menu"
+    >
+
+        <div class="menu-label">
+            Personal Controls
+        </div>
+
+
+        <button
+            class="menu-item"
+            id="homeBtn"
+        >
+            <i class="fa-solid fa-house"></i>
+            Home
+        </button>
+
+
+        <button
+            class="menu-item"
+            id="systemsBtn"
+        >
+            <i class="fa-solid fa-circle-nodes"></i>
+            My Systems
+        </button>
+
+
+        <button
+            class="menu-item"
+            id="refreshBtn"
+        >
+            <i class="fa-solid fa-arrows-rotate"></i>
+            Refresh Space
+        </button>
+
+
+        <div class="menu-divider"></div>
+
+
+        <button
+            class="menu-item"
+            id="lockBtn"
+        >
+            <i class="fa-solid fa-lock"></i>
+            Lock Space
+        </button>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SCROLL
+    ====================================================== -->
+
+    <main class="scroll">
+
+        <div class="content">
+
+
+            <!-- =================================================
+                 TOP
+            ================================================== -->
+
+            <section class="top-area">
+
+                <div>
+
+                    <div class="top-label">
+                        Personal command space
+                    </div>
+
+
+                    <h1
+                        class="top-title"
+                        id="greeting"
+                    >
+                        Good morning,<br>
+                        <span>Aman.</span>
+                    </h1>
+
+
+                    <p class="top-copy">
+                        Three simple systems.
+                        One private place.
+                    </p>
+
+                </div>
+
+
+                <div class="date-orbit">
+
+                    <div
+                        class="date-day"
+                        id="dateDay"
+                    >
+                        04
+                    </div>
+
+
+                    <div
+                        class="date-month"
+                        id="dateMonth"
+                    >
+                        October
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SYSTEM HEADING
+            ================================================== -->
+
+            <div class="system-heading">
+
+                <span>
+                    My systems
+                </span>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SYSTEMS
+            ================================================== -->
+
+            <section class="systems">
+
+
+                <!-- LIFE DESK -->
+
+                <a
+                    class="system-link reveal"
+                    href="https://student-amankumar.github.io/Aman-OS/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div class="system-circle">
+
+                        <img
+                            src="images/lifedesk.png"
+                            class="system-logo"
+                            alt="LifeDesk"
+                        >
+
+
+                        <div class="system-number">
+                            01
+                        </div>
+
+                    </div>
+
+
+                    <div class="system-name">
+                        LifeDesk
+                    </div>
+
+
+                    <div class="system-type">
+                        Personal OS
+                    </div>
+
+
+                    <div class="system-open">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </div>
+
+                </a>
+
+
+
+                <!-- MY WORKSPACE -->
+
+                <a
+                    class="system-link reveal"
+                    href="https://student-amankumar.github.io/My-Workspce/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div class="system-circle">
+
+                        <img
+                            src="images/workspace.png"
+                            class="system-logo"
+                            alt="My Workspace"
+                        >
+
+
+                        <div class="system-number">
+                            02
+                        </div>
+
+                    </div>
+
+
+                    <div class="system-name">
+                        My Workspace
+                    </div>
+
+
+                    <div class="system-type">
+                        Work Manager
+                    </div>
+
+
+                    <div class="system-open">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </div>
+
+                </a>
+
+
+
+                <!-- TOMORROW -->
+
+                <a
+                    class="system-link reveal"
+                    href="https://student-amankumar.github.io/Tomorrow/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div class="system-circle">
+
+                        <img
+                            src="images/tomorrow.png"
+                            class="system-logo"
+                            alt="Tomorrow"
+                        >
+
+
+                        <div class="system-number">
+                            03
+                        </div>
+
+                    </div>
+
+
+                    <div class="system-name">
+                        Tomorrow
+                    </div>
+
+
+                    <div class="system-type">
+                        Day Planner
+                    </div>
+
+
+                    <div class="system-open">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </div>
+
+                </a>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 SMALL STATUS STRIP
+            ================================================== -->
+
+            <section class="status-strip reveal">
+
+
+                <div class="status-item">
+
+                    <div class="status-icon">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+
+
+                    <div class="status-copy">
+
+                        <span class="status-label">
+                            Systems
+                        </span>
+
+                        <span class="status-value">
+                            03
+                        </span>
+
+                        <span class="status-sub">
+                            Connected
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="status-item">
+
+                    <div class="status-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+
+
+                    <div class="status-copy">
+
+                        <span class="status-label">
+                            Access
+                        </span>
+
+                        <span class="status-value">
+                            Private
+                        </span>
+
+                        <span class="status-sub">
+                            Personal
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="status-item">
+
+                    <div class="status-icon">
+                        <i class="fa-regular fa-clock"></i>
+                    </div>
+
+
+                    <div class="status-copy">
+
+                        <span class="status-label">
+                            Time
+                        </span>
+
+                        <span
+                            class="status-value"
+                            id="miniClock"
+                        >
+                            --
+                        </span>
+
+                        <span class="status-sub">
+                            Live
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+            <footer class="footer reveal">
+
+
+<div class="footer-brand">
+
+    <img
+        src="images/logo.png"
+        class="footer-logo"
+        alt="Aman"
+        style="
+            width:42px !important;
+            height:42px !important;
+            min-width:42px !important;
+            min-height:42px !important;
+            max-width:42px !important;
+            max-height:42px !important;
+            flex:0 0 42px !important;
+            display:block !important;
+            object-fit:cover !important;
+            object-position:center !important;
+            border-radius:50% !important;
+            overflow:hidden !important;
+            box-sizing:border-box !important;
+        "
+    >
+
+    <div class="footer-copy">
+
+        <span class="footer-title">
+            Aman Personal Hub
+        </span>
+
+        <span class="footer-sub">
+            A private space for your personal systems
+        </span>
+
+    </div>
+
+</div>
+
+
+
+
+                <div class="footer-right">
+
+
+                    <div class="footer-status">
+
+                        <span class="footer-dot"></span>
+
+                        Space online
+
+                    </div>
+
+
+                    <div
+                        class="footer-time"
+                        id="bottomTime"
+                    >
+                        ---
+                    </div>
+
+                </div>
+
+            </footer>
+
+
+        </div>
+
+    </main>
+
+</section>
+
+
+
+<script>
+
+/* =========================================================
+   CONFIG
+========================================================= */
+
+
+/*
+   APNE 3 LIVE LINKS YAHAN ADD KARO.
+*/
+
+const LINKS = {
+
+    lifedesk:
+        "YOUR-LIFEDESK-LINK",
+
+    workspace:
+        "YOUR-MY-WORKSPACE-LINK",
+
+    tomorrow:
+        "YOUR-TOMORROW-LINK"
+
+};
+
+
+/*
+   LOGIN
+*/
+
+const USERNAME = "aman";
+
+const PASSWORD = "1234";
+
+
+/*
+   SESSION
+*/
+
+const SESSION =
+    "aman_personal_hub_session";
+
+
+/* =========================================================
+   ELEMENTS
+========================================================= */
+
+const startup =
+    document.getElementById("startup");
+
+const login =
+    document.getElementById("login");
+
+const sync =
+    document.getElementById("sync");
+
+const app =
+    document.getElementById("app");
+
+const loaderFill =
+    document.getElementById("loaderFill");
+
+const loaderPercent =
+    document.getElementById("loaderPercent");
+
+const loaderCaption =
+    document.getElementById("loaderCaption");
+
+const syncFill =
+    document.getElementById("syncFill");
+
+const syncPercent =
+    document.getElementById("syncPercent");
+
+const syncTitle =
+    document.getElementById("syncTitle");
+
+const syncSmall =
+    document.getElementById("syncSmall");
+
+const syncMessage =
+    document.getElementById("syncMessage");
+
+
+/* =========================================================
+   APPLY LINKS
+========================================================= */
+
+document
+.querySelectorAll(
+    'a[href="YOUR-LIFEDESK-LINK"]'
+)
+.forEach(el=>{
+
+    el.href =
+        LINKS.lifedesk;
+
+});
+
+
+document
+.querySelectorAll(
+    'a[href="YOUR-MY-WORKSPACE-LINK"]'
+)
+.forEach(el=>{
+
+    el.href =
+        LINKS.workspace;
+
+});
+
+
+document
+.querySelectorAll(
+    'a[href="YOUR-TOMORROW-LINK"]'
+)
+.forEach(el=>{
+
+    el.href =
+        LINKS.tomorrow;
+
+});
+
+
+/* =========================================================
+   STARTUP
+========================================================= */
+
+function runStartup(){
+
+    let progress = 0;
+
+
+    const captions = [
+
+        "Preparing your space",
+        "Loading identity",
+        "Checking systems",
+        "Preparing access",
+        "Almost ready"
+
+    ];
+
+
+    const timer =
+        setInterval(()=>{
+
+
+            progress += 2;
+
+
+            if(progress > 100){
+
+                progress = 100;
+
+            }
+
+
+            loaderFill.style.width =
+                progress + "%";
+
+
+            loaderPercent.textContent =
+                String(Math.floor(progress))
+                .padStart(2,"0") + "%";
+
+
+            const index =
+                Math.min(
+                    captions.length - 1,
+                    Math.floor(progress / 21)
+                );
+
+
+            loaderCaption.textContent =
+                captions[index];
+
+
+            if(progress >= 100){
+
+                clearInterval(timer);
+
+
+                setTimeout(()=>{
+
+
+                    startup.style.opacity = "0";
+
+                    startup.style.visibility =
+                        "hidden";
+
+
+                    setTimeout(()=>{
+
+
+                        startup.style.display =
+                            "none";
+
+
+                        if(
+                            sessionStorage.getItem(
+                                SESSION
+                            ) === "active"
+                        ){
+
+                            startSync();
+
+                        }else{
+
+                            login.style.display =
+                                "flex";
+
+                        }
+
+
+                    },500);
+
+
+                },350);
+
+            }
+
+
+        },26);
+
+}
+
+runStartup();
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+document
+.getElementById("loginForm")
+.addEventListener(
+    "submit",
+    function(e){
+
+        e.preventDefault();
+
+
+        const username =
+            document
+            .getElementById("username")
+            .value
+            .trim();
+
+
+        const password =
+            document
+            .getElementById("password")
+            .value;
+
+
+        const error =
+            document
+            .getElementById("loginError");
+
+
+        if(
+            username === USERNAME &&
+            password === PASSWORD
+        ){
+
+            error.textContent = "";
+
+
+            sessionStorage.setItem(
+                SESSION,
+                "active"
+            );
+
+
+            login.style.opacity = "0";
+
+
+            setTimeout(()=>{
+
+
+                login.style.display =
+                    "none";
+
+                startSync();
+
+
+            },350);
+
+
+        }else{
+
+            error.textContent =
+                "Incorrect personal ID or password.";
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   SYNC
+========================================================= */
+
+function startSync(){
+
+    sync.style.display = "flex";
+
+    sync.style.opacity = "1";
+
+
+    let progress = 0;
+
+    let stage = 0;
+
+
+    const stages = [
+
+        {
+            at:0,
+            small:"Connection",
+            title:"Connect",
+            message:
+                "Connecting your personal space"
+        },
+
+        {
+            at:25,
+            small:"Discovery",
+            title:"Locate",
+            message:
+                "Finding your connected systems"
+        },
+
+        {
+            at:50,
+            small:"Synchronization",
+            title:"Sync",
+            message:
+                "Synchronizing your environment"
+        },
+
+        {
+            at:75,
+            small:"Preparation",
+            title:"Prepare",
+            message:
+                "Preparing your private interface"
+        },
+
+        {
+            at:94,
+            small:"Access granted",
+            title:"Ready",
+            message:
+                "Your personal space is ready"
+        }
+
+    ];
+
+
+    const timer =
+        setInterval(()=>{
+
+
+            progress += 1.5;
+
+
+            if(progress > 100){
+
+                progress = 100;
+
+            }
+
+
+            syncFill.style.width =
+                progress + "%";
+
+
+            syncPercent.textContent =
+                String(Math.floor(progress))
+                .padStart(2,"0") + "%";
+
+
+            while(
+                stage < stages.length &&
+                progress >= stages[stage].at
+            ){
+
+                syncSmall.textContent =
+                    stages[stage].small;
+
+
+                syncTitle.textContent =
+                    stages[stage].title;
+
+
+                syncMessage.textContent =
+                    stages[stage].message;
+
+
+                stage++;
+
+            }
+
+
+            if(progress >= 100){
+
+                clearInterval(timer);
+
+
+                setTimeout(()=>{
+
+
+                    sync.style.opacity = "0";
+
+
+                    setTimeout(()=>{
+
+
+                        sync.style.display =
+                            "none";
+
+
+                        app.style.display =
+                            "block";
+
+
+                        initialize();
+
+
+                    },500);
+
+
+                },450);
+
+            }
+
+
+        },27);
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+function initialize(){
+
+    updateGreeting();
+
+    updateDate();
+
+    updateClock();
+
+
+    setTimeout(
+        revealElements,
+        150
+    );
+
+}
+
+
+/* =========================================================
+   GREETING
+========================================================= */
+
+function updateGreeting(){
+
+    const hour =
+        new Date().getHours();
+
+
+    let greeting =
+        "Good evening";
+
+
+    if(hour < 5){
+
+        greeting =
+            "Good night";
+
+    }else if(hour < 12){
+
+        greeting =
+            "Good morning";
+
+    }else if(hour < 17){
+
+        greeting =
+            "Good afternoon";
+
+    }
+
+
+    document
+    .getElementById("greeting")
+    .innerHTML =
+        `${greeting},<br><span>Aman.</span>`;
+
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+function updateDate(){
+
+    const now =
+        new Date();
+
+
+    document
+    .getElementById("dateDay")
+    .textContent =
+        String(
+            now.getDate()
+        ).padStart(2,"0");
+
+
+    document
+    .getElementById("dateMonth")
+    .textContent =
+        now.toLocaleDateString(
+            "en-IN",
+            {
+                month:"long"
+            }
+        );
+
+
+    document
+    .getElementById("headerDate")
+    .textContent =
+        now
+        .toLocaleDateString(
+            "en-IN",
+            {
+                weekday:"short",
+                day:"2-digit",
+                month:"short",
+                year:"numeric"
+            }
+        )
+        .toUpperCase();
+
+}
+
+
+/* =========================================================
+   LIVE CLOCK
+========================================================= */
+
+function updateClock(){
+
+    function tick(){
+
+        const now =
+            new Date();
+
+
+        const time =
+            now.toLocaleTimeString(
+                "en-IN",
+                {
+                    hour:"2-digit",
+                    minute:"2-digit",
+                    hour12:true
+                }
+            );
+
+
+        const fullTime =
+            now.toLocaleTimeString(
+                "en-IN",
+                {
+                    hour:"2-digit",
+                    minute:"2-digit",
+                    second:"2-digit",
+                    hour12:true
+                }
+            );
+
+
+        document
+        .getElementById("miniClock")
+        .textContent =
+            time.toUpperCase();
+
+
+        document
+        .getElementById("bottomTime")
+        .textContent =
+            fullTime.toUpperCase();
+
+    }
+
+
+    tick();
+
+
+    setInterval(
+        tick,
+        1000
+    );
+
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+========================================================= */
+
+function revealElements(){
+
+    const elements =
+        document.querySelectorAll(
+            ".reveal"
+        );
+
+
+    elements.forEach(
+        (element,index)=>{
+
+
+            setTimeout(()=>{
+
+                element.classList.add(
+                    "visible"
+                );
+
+            },index * 120);
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+const menu =
+    document.getElementById("menu");
+
+
+const menuTrigger =
+    document.getElementById("menuTrigger");
+
+
+menuTrigger.addEventListener(
+    "click",
+    function(e){
+
+        e.stopPropagation();
+
+        menu.classList.toggle("open");
+
+    }
+);
+
+
+document.addEventListener(
+    "click",
+    function(e){
+
+        if(
+            !menu.contains(e.target) &&
+            !menuTrigger.contains(e.target)
+        ){
+
+            menu.classList.remove(
+                "open"
+            );
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+document
+.getElementById("homeBtn")
+.addEventListener(
+    "click",
+    ()=>{
+
+
+        document
+        .querySelector(".scroll")
+        .scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+
+        menu.classList.remove(
+            "open"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   SYSTEMS
+========================================================= */
+
+document
+.getElementById("systemsBtn")
+.addEventListener(
+    "click",
+    ()=>{
+
+
+        document
+        .querySelector(".systems")
+        .scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+
+
+        menu.classList.remove(
+            "open"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   REFRESH
+========================================================= */
+
+document
+.getElementById("refreshBtn")
+.addEventListener(
+    "click",
+    ()=>{
+
+
+        menu.classList.remove(
+            "open"
+        );
+
+
+        startSync();
+
+    }
+);
+
+
+/* =========================================================
+   LOCK
+========================================================= */
+
+document
+.getElementById("lockBtn")
+.addEventListener(
+    "click",
+    ()=>{
+
+
+        sessionStorage.removeItem(
+            SESSION
+        );
+
+
+        location.reload();
+
+    }
+);
+
+
+/* =========================================================
+   ESCAPE = LOCK
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    e=>{
+
+
+        if(e.key === "Escape"){
+
+            sessionStorage.removeItem(
+                SESSION
+            );
+
+
+            location.reload();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   IMAGE DRAG PROTECTION
+========================================================= */
+
+document
+.querySelectorAll("img")
+.forEach(img=>{
+
+    img.addEventListener(
+        "dragstart",
+        e=>e.preventDefault()
+    );
+
+});
+
+
+/* =========================================================
+   SCROLL MICRO PARALLAX
+========================================================= */
+
+const scroll =
+    document.querySelector(".scroll");
+
+
+const bgOne =
+    document.querySelector(".bg-one");
+
+
+const bgTwo =
+    document.querySelector(".bg-two");
+
+
+scroll.addEventListener(
+    "scroll",
+    ()=>{
+
+
+        const y =
+            scroll.scrollTop;
+
+
+        bgOne.style.transform =
+            `translateY(${y * .08}px)`;
+
+
+        bgTwo.style.transform =
+            `translateY(${-y * .05}px)`;
+
+
+    }
+);
+
+
+/* =========================================================
+   EXTRA SCROLL REVEAL
+========================================================= */
+
+const revealObserver =
+    new IntersectionObserver(
+        entries=>{
+
+            entries.forEach(entry=>{
+
+                if(entry.isIntersecting){
+
+                    entry.target.classList.add(
+                        "visible"
+                    );
+
+                }
+
+            });
+
+        },
+        {
+            root:scroll,
+            threshold:.12
+        }
+    );
+
+
+document
+.querySelectorAll(".reveal")
+.forEach(el=>{
+
+    revealObserver.observe(el);
+
+});
+
+</script>
+
+
+<script>
+
+/* =========================================================
+   PERSONAL HUB — PROTECTION LAYER
+========================================================= */
+
+(function(){
+
+
+    /* -----------------------------------------------------
+       1. DISABLE RIGHT CLICK
+    ----------------------------------------------------- */
+
+    document.addEventListener("contextmenu", function(e){
+
+        e.preventDefault();
+
+    });
+
+
+    /* -----------------------------------------------------
+       2. DISABLE TEXT SELECTION
+    ----------------------------------------------------- */
+
+    document.addEventListener("selectstart", function(e){
+
+        e.preventDefault();
+
+    });
+
+
+    /* -----------------------------------------------------
+       3. DISABLE COPY / CUT
+    ----------------------------------------------------- */
+
+    document.addEventListener("copy", function(e){
+
+        e.preventDefault();
+
+    });
+
+
+    document.addEventListener("cut", function(e){
+
+        e.preventDefault();
+
+    });
+
+
+    /* -----------------------------------------------------
+       4. DISABLE DRAGGING
+    ----------------------------------------------------- */
+
+    document.addEventListener("dragstart", function(e){
+
+        e.preventDefault();
+
+    });
+
+
+    /* -----------------------------------------------------
+       5. KEYBOARD PROTECTION
+    ----------------------------------------------------- */
+
+    document.addEventListener("keydown", function(e){
+
+        const key = e.key.toLowerCase();
+
+
+        /*
+            Developer tools
+        */
+
+        if(
+            key === "f12" ||
+            (
+                e.ctrlKey &&
+                e.shiftKey &&
+                ["i","j","c"].includes(key)
+            ) ||
+            (
+                e.metaKey &&
+                e.altKey &&
+                ["i","j","c"].includes(key)
+            )
+        ){
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            return false;
+
+        }
+
+
+        /*
+            View source
+        */
+
+        if(
+            (e.ctrlKey || e.metaKey) &&
+            key === "u"
+        ){
+
+            e.preventDefault();
+
+            return false;
+
+        }
+
+
+        /*
+            Save page
+        */
+
+        if(
+            (e.ctrlKey || e.metaKey) &&
+            key === "s"
+        ){
+
+            e.preventDefault();
+
+            return false;
+
+        }
+
+
+        /*
+            Print
+        */
+
+        if(
+            (e.ctrlKey || e.metaKey) &&
+            key === "p"
+        ){
+
+            e.preventDefault();
+
+            return false;
+
+        }
+
+
+        /*
+            Copy
+        */
+
+        if(
+            (e.ctrlKey || e.metaKey) &&
+            key === "c"
+        ){
+
+            e.preventDefault();
+
+            return false;
+
+        }
+
+
+        /*
+            Cut
+        */
+
+        if(
+            (e.ctrlKey || e.metaKey) &&
+            key === "x"
+        ){
+
+            e.preventDefault();
+
+            return false;
+
+        }
+
+
+        /*
+            Select all
+        */
+
+        if(
+            (e.ctrlKey || e.metaKey) &&
+            key === "a"
+        ){
+
+            e.preventDefault();
+
+            return false;
+
+        }
+
+
+        /*
+            Developer tools via shortcut
+        */
+
+        if(
+            e.key === "F12" ||
+            e.keyCode === 123
+        ){
+
+            e.preventDefault();
+
+            return false;
+
+        }
+
+    });
+
+
+    /* -----------------------------------------------------
+       6. MOBILE LONG PRESS
+    ----------------------------------------------------- */
+
+    let longPressTimer = null;
+
+
+    document.addEventListener(
+        "touchstart",
+        function(e){
+
+            longPressTimer = setTimeout(function(){
+
+                e.preventDefault();
+
+            },550);
+
+        },
+        {passive:false}
+    );
+
+
+    document.addEventListener(
+        "touchend",
+        function(){
+
+            clearTimeout(longPressTimer);
+
+        },
+        {passive:false}
+    );
+
+
+    document.addEventListener(
+        "touchmove",
+        function(){
+
+            clearTimeout(longPressTimer);
+
+        },
+        {passive:false}
+    );
+
+
+    /* -----------------------------------------------------
+       7. PREVENT IMAGE DRAG
+    ----------------------------------------------------- */
+
+    document
+    .querySelectorAll("img")
+    .forEach(function(img){
+
+        img.setAttribute(
+            "draggable",
+            "false"
+        );
+
+
+        img.addEventListener(
+            "dragstart",
+            function(e){
+
+                e.preventDefault();
+
+            }
+        );
+
+    });
+
+
+    /* -----------------------------------------------------
+       8. EXTRA CSS PROTECTION
+    ----------------------------------------------------- */
+
+    const protectionStyle =
+        document.createElement("style");
+
+
+    protectionStyle.textContent = `
+
+        html,
+        body,
+        *{
+            -webkit-tap-highlight-color:transparent !important;
+        }
+
+        img{
+            -webkit-user-drag:none !important;
+            user-drag:none !important;
+        }
+
+        body{
+            -webkit-touch-callout:none !important;
+            -webkit-user-select:none !important;
+            user-select:none !important;
+        }
+
+        input,
+        textarea{
+            -webkit-user-select:text !important;
+            user-select:text !important;
+        }
+
+    `;
+
+
+    document.head.appendChild(
+        protectionStyle
+    );
+
+
+    /* -----------------------------------------------------
+       9. HIDE APP IF SESSION IS NOT ACTIVE
+    ----------------------------------------------------- */
+
+    function securityCheck(){
+
+        const session =
+            sessionStorage.getItem(
+                "aman_personal_hub_session"
+            );
+
+
+        const app =
+            document.getElementById("app");
+
+
+        if(!session && app){
+
+            app.style.display = "none";
+
+        }
+
+    }
+
+
+    securityCheck();
+
+
+    /* -----------------------------------------------------
+       10. BACK BUTTON PROTECTION
+    ----------------------------------------------------- */
+
+    history.pushState(
+        null,
+        "",
+        location.href
+    );
+
+
+    window.addEventListener(
+        "popstate",
+        function(){
+
+            history.pushState(
+                null,
+                "",
+                location.href
+            );
+
+        }
+    );
+
+
+    /* -----------------------------------------------------
+       11. PAGE VISIBILITY PROTECTION
+    ----------------------------------------------------- */
+
+    document.addEventListener(
+        "visibilitychange",
+        function(){
+
+            if(document.hidden){
+
+                document.title =
+                    "Private Space";
+
+            }else{
+
+                document.title =
+                    "Aman — Personal Hub";
+
+            }
+
+        }
+    );
+
+
+    /* -----------------------------------------------------
+       12. AUTO LOCK WHEN TAB CLOSES
+
+       NOTE:
+       sessionStorage automatically clears when the
+       browser tab/window session ends.
+    ----------------------------------------------------- */
+
+
+    /* -----------------------------------------------------
+       13. CONSOLE WARNING
+    ----------------------------------------------------- */
+
+    try{
+
+        console.clear();
+
+
+        console.log(
+            "%cPrivate Personal Space",
+            "font-size:18px;font-weight:bold;"
+        );
+
+
+        console.log(
+            "This area is private."
+        );
+
+    }catch(error){}
+
+
+})();
+
+</script>
+
+
+</body>
+</html>
