@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#f4ecdf">
 
-<title>Aman — Personal Hub</title>
+<title>Aman — Personal Desk</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2265,17 +2265,8 @@ img{
 
     <header class="header">
 
-<div class="footer-brand"
-    style="
-        width:100% !important;
-        display:flex !important;
-        align-items:center !important;
-        justify-content:flex-start !important;
-        text-align:left !important;
-        margin-left:0 !important;
-        margin-right:auto !important;
-    "
->
+
+       <div class="footer-brand">
 
     <div
         style="
@@ -2295,7 +2286,7 @@ img{
         "
     >
         <img
-            src="images/log0.png"
+            src="images/logo.png"
             class="footer-logo"
             alt="Aman"
             style="
@@ -2316,19 +2307,16 @@ img{
         >
     </div>
 
-    <div class="footer-copy"
-        style="
-            text-align:left !important;
-            margin-left:10px !important;
-        "
-    >
+    <div class="footer-copy">
+
         <span class="footer-title">
-            Aman Personal Hub
+            Aman Desk
         </span>
 
         <span class="footer-sub">
             A private space for your personal systems
         </span>
+
     </div>
 
 </div>
@@ -2336,47 +2324,26 @@ img{
 <style>
 @keyframes footerCircleSpin {
     from {
-        box-shadow:
-            0 -2px 0 rgba(180,145,75,.9),
-            2px 0 0 rgba(180,145,75,.35),
-            0 2px 0 transparent,
-            -2px 0 0 rgba(180,145,75,.35);
+        box-shadow:0 -2px 0 rgba(180,145,75,.9),
+                   2px 0 0 rgba(180,145,75,.35),
+                   0 2px 0 transparent,
+                   -2px 0 0 rgba(180,145,75,.35);
     }
-
     50% {
-        box-shadow:
-            0 2px 0 rgba(180,145,75,.9),
-            -2px 0 0 rgba(180,145,75,.35),
-            0 -2px 0 transparent,
-            2px 0 0 rgba(180,145,75,.35);
+        box-shadow:0 2px 0 rgba(180,145,75,.9),
+                   -2px 0 0 rgba(180,145,75,.35),
+                   0 -2px 0 transparent,
+                   2px 0 0 rgba(180,145,75,.35);
     }
-
     to {
-        box-shadow:
-            0 -2px 0 rgba(180,145,75,.9),
-            2px 0 0 rgba(180,145,75,.35),
-            0 2px 0 transparent,
-            -2px 0 0 rgba(180,145,75,.35);
-    }
-}
-
-/* Mobile: always keep footer brand on LEFT */
-@media (max-width: 768px) {
-    .footer-brand {
-        width:100% !important;
-        display:flex !important;
-        align-items:center !important;
-        justify-content:flex-start !important;
-        text-align:left !important;
-        margin-left:-2rem !important;
-        margin-right:auto !important;
-    }
-
-    .footer-brand .footer-copy {
-        text-align:left !important;
+        box-shadow:0 -2px 0 rgba(180,145,75,.9),
+                   2px 0 0 rgba(180,145,75,.35),
+                   0 2px 0 transparent,
+                   -2px 0 0 rgba(180,145,75,.35);
     }
 }
 </style>
+
 
 
         <div class="header-right">
@@ -2546,11 +2513,10 @@ img{
                 <!-- LIFE DESK -->
 
                 <a
-                    class="system-link reveal"
-                    href="https://student-amankumar.github.io/Aman-OS/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
+    class="system-link reveal"
+    href="javascript:void(0);"
+    onclick="window.open('https://student-amankumar.github.io/Aman-OS/', '_blank', 'noopener,noreferrer'); return false;"
+>
 
                     <div class="system-circle">
 
@@ -2588,12 +2554,11 @@ img{
 
                 <!-- MY WORKSPACE -->
 
-                <a
-                    class="system-link reveal"
-                    href="https://student-amankumar.github.io/My-Workspce/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
+               <a
+    class="system-link reveal"
+    href="javascript:void(0);"
+    onclick="window.open('https://student-amankumar.github.io/My-Workspce/', '_blank', 'noopener,noreferrer'); return false;"
+>
 
                     <div class="system-circle">
 
@@ -2631,13 +2596,11 @@ img{
 
                 <!-- TOMORROW -->
 
-                <a
-                    class="system-link reveal"
-                    href="https://student-amankumar.github.io/Tomorrow/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-
+               <a
+    class="system-link reveal"
+    href="javascript:void(0);"
+    onclick="window.open('https://student-amankumar.github.io/Tomorrow/', '_blank', 'noopener,noreferrer'); return false;"
+>
                     <div class="system-circle">
 
                         <img
@@ -2800,7 +2763,7 @@ img{
     <div class="footer-copy">
 
         <span class="footer-title">
-            Aman Personal Hub
+            Aman Desk
         </span>
 
         <span class="footer-sub">
@@ -2860,13 +2823,13 @@ img{
 const LINKS = {
 
     lifedesk:
-        "YOUR-LIFEDESK-LINK",
+        "https://student-amankumar.github.io/Aman-OS/",
 
     workspace:
-        "YOUR-MY-WORKSPACE-LINK",
+        "https://student-amankumar.github.io/My-Workspce/",
 
     tomorrow:
-        "YOUR-TOMORROW-LINK"
+        "https://student-amankumar.github.io/Tomorrow/"
 
 };
 
@@ -2875,9 +2838,9 @@ const LINKS = {
    LOGIN
 */
 
-const USERNAME = "aman";
+const USERNAME = "Aman";
 
-const PASSWORD = "1234";
+const PASSWORD = "@1234";
 
 
 /*
