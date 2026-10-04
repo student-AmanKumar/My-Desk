@@ -2322,28 +2322,37 @@ img{
 </div>
 
 <style>
-@keyframes footerCircleSpin {
-    from {
-        box-shadow:0 -2px 0 rgba(180,145,75,.9),
-                   2px 0 0 rgba(180,145,75,.35),
-                   0 2px 0 transparent,
-                   -2px 0 0 rgba(180,145,75,.35);
+@media (max-width:600px){
+
+    .footer-brand{
+        position:fixed !important;
+        right:14px !important;
+        bottom:14px !important;
+        left:auto !important;
+        top:auto !important;
+
+        width:auto !important;
+        max-width:calc(100vw - 28px) !important;
+
+        z-index:9999 !important;
+
+        display:flex !important;
+        align-items:center !important;
+        gap:8px !important;
+
+        margin:0 !important;
     }
-    50% {
-        box-shadow:0 2px 0 rgba(180,145,75,.9),
-                   -2px 0 0 rgba(180,145,75,.35),
-                   0 -2px 0 transparent,
-                   2px 0 0 rgba(180,145,75,.35);
+
+    .footer-brand .footer-copy{
+        min-width:0 !important;
     }
-    to {
-        box-shadow:0 -2px 0 rgba(180,145,75,.9),
-                   2px 0 0 rgba(180,145,75,.35),
-                   0 2px 0 transparent,
-                   -2px 0 0 rgba(180,145,75,.35);
+
+    .footer-brand .footer-title,
+    .footer-brand .footer-sub{
+        white-space:nowrap !important;
     }
 }
 </style>
-
 
 
         <div class="header-right">
