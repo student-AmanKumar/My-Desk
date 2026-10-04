@@ -2265,8 +2265,17 @@ img{
 
     <header class="header">
 
-
-       <div class="footer-brand">
+<div class="footer-brand"
+    style="
+        width:100% !important;
+        display:flex !important;
+        align-items:center !important;
+        justify-content:flex-start !important;
+        text-align:left !important;
+        margin-left:0 !important;
+        margin-right:auto !important;
+    "
+>
 
     <div
         style="
@@ -2286,7 +2295,7 @@ img{
         "
     >
         <img
-            src="images/logo.png"
+            src="images/log0.png"
             class="footer-logo"
             alt="Aman"
             style="
@@ -2307,8 +2316,12 @@ img{
         >
     </div>
 
-    <div class="footer-copy">
-
+    <div class="footer-copy"
+        style="
+            text-align:left !important;
+            margin-left:10px !important;
+        "
+    >
         <span class="footer-title">
             Aman Personal Hub
         </span>
@@ -2316,40 +2329,51 @@ img{
         <span class="footer-sub">
             A private space for your personal systems
         </span>
-
     </div>
 
 </div>
 
 <style>
-@media (max-width:600px){
+@keyframes footerCircleSpin {
+    from {
+        box-shadow:
+            0 -2px 0 rgba(180,145,75,.9),
+            2px 0 0 rgba(180,145,75,.35),
+            0 2px 0 transparent,
+            -2px 0 0 rgba(180,145,75,.35);
+    }
 
-    .footer-brand{
-        position:fixed !important;
-        right:14px !important;
-        bottom:14px !important;
-        left:auto !important;
-        top:auto !important;
+    50% {
+        box-shadow:
+            0 2px 0 rgba(180,145,75,.9),
+            -2px 0 0 rgba(180,145,75,.35),
+            0 -2px 0 transparent,
+            2px 0 0 rgba(180,145,75,.35);
+    }
 
-        width:auto !important;
-        max-width:calc(100vw - 28px) !important;
+    to {
+        box-shadow:
+            0 -2px 0 rgba(180,145,75,.9),
+            2px 0 0 rgba(180,145,75,.35),
+            0 2px 0 transparent,
+            -2px 0 0 rgba(180,145,75,.35);
+    }
+}
 
-        z-index:9999 !important;
-
+/* Mobile: always keep footer brand on LEFT */
+@media (max-width: 768px) {
+    .footer-brand {
+        width:100% !important;
         display:flex !important;
         align-items:center !important;
-        gap:8px !important;
-
-        margin:0 !important;
+        justify-content:flex-start !important;
+        text-align:left !important;
+        margin-left:0 !important;
+        margin-right:auto !important;
     }
 
-    .footer-brand .footer-copy{
-        min-width:0 !important;
-    }
-
-    .footer-brand .footer-title,
-    .footer-brand .footer-sub{
-        white-space:nowrap !important;
+    .footer-brand .footer-copy {
+        text-align:left !important;
     }
 }
 </style>
